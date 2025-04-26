@@ -1,5 +1,26 @@
 import streamlit as st
 import os
+from PIL import Image
+
+# Sayfa Ayarları
+st.set_page_config(page_title="Guess the Price - Real Estate Challenge", layout="centered")
+
+# 📸 PH1 görselini yükle ve küçült
+if os.path.exists("PH1.webp"):
+    img = Image.open("PH1.webp")
+    width, height = img.size
+    new_size = (width // 4, height // 4)  # 4'te 1 küçültme
+    img = img.resize(new_size)
+    st.image(img)
+else:
+    st.warning("⚠️ PH1.webp bulunamadı!")
+
+# 🏠 Başlık
+st.markdown(
+    "<h1 style='text-align: center;'>🏠 Guess the Price - Real Estate Challenge</h1>",
+    unsafe_allow_html=True
+)
+
 
 # Sayfa Ayarları
 st.set_page_config(page_title="Guess the Price - Real Estate Challenge", layout="centered")
