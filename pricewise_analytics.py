@@ -116,8 +116,12 @@ st.markdown("---")  # bir çizgi ayırıcı
 if os.path.exists("PH1.webp"):
     img = Image.open("PH1.webp")
     width, height = img.size
-    new_size = (width // 4, height // 4)
+
     img = img.resize(new_size)
     st.image(img, caption="🏠 Thank you for visiting!", use_column_width=False)
 else:
     st.warning("⚠️ PH1.webp not found at the end!")
+
+# PH8 tek başına
+if os.path.exists("PH1.webp"):
+    st.image("PH1.webp", caption="🏠 Thank you for visiting!", use_column_width=True)
