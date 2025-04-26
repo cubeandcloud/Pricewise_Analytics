@@ -5,14 +5,13 @@ from PIL import Image
 # Sayfa Ayarları
 st.set_page_config(page_title="Guess the Price - Real Estate Challenge", layout="centered")
 
-# 📸 PH1 görselini yükle ve küçült
+# PH1 logosunu yükle ve küçült
 if os.path.exists("PH1.webp"):
     img = Image.open("PH1.webp")
     width, height = img.size
-    new_size = (width // 4, height // 4)  # 4'te 1 küçültme
+    new_size = (width // 4, height // 4)
     img = img.resize(new_size)
 
-    # İkisini yan yana koymak için iki kolon kullanıyoruz
     col1, col2 = st.columns([4, 1])
 
     with col1:
@@ -21,7 +20,7 @@ if os.path.exists("PH1.webp"):
     with col2:
         st.image(img)
 else:
-    st.warning("⚠️ PH1.webp bulunamadı!")
+    st.warning("⚠️ PH1.webp not found!")
 
 # 🏡 House Features Bölümü
 st.header("🏡 House Features")
@@ -34,78 +33,59 @@ st.markdown("""
 - **Deck / Outdoor**: 24 m² deck + 7 m² patio  
 """)
 
-# 📸 Fotoğrafları belirli düzende yükle
-# PH2 ve PH3 yan yana
+# 📸 Fotoğrafları sırayla ve doğru açıklamalarla göster
+# PH2 + PH3 yan yana
 col1, col2 = st.columns(2)
 with col1:
     if os.path.exists("PH2.webp"):
-        st.image("PH2.webp", caption="Photo 2", use_column_width=True)
-    else:
-        st.warning("⚠️ PH2.webp bulunamadı!")
-
+        st.image("PH2.webp", caption="📍 Location", use_column_width=True)
 with col2:
     if os.path.exists("PH3.webp"):
-        st.image("PH3.webp", caption="Photo 3", use_column_width=True)
-    else:
-        st.warning("⚠️ PH3.webp bulunamadı!")
+        st.image("PH3.webp", caption="🏘️ Neighborhood", use_column_width=True)
 
 # PH4 tek başına
 if os.path.exists("PH4.webp"):
-    st.image("PH4.webp", caption="Photo 4", use_column_width=True)
-else:
-    st.warning("⚠️ PH4.webp bulunamadı!")
+    st.image("PH4.webp", caption="🛋️ Living Room", use_column_width=True)
+
+# PH10 tek başına
+if os.path.exists("PH10.webp"):
+    st.image("PH10.webp", caption="🍽️ Kitchen", use_column_width=True)
 
 # PH5 tek başına
 if os.path.exists("PH5.webp"):
-    st.image("PH5.webp", caption="Photo 5", use_column_width=True)
-else:
-    st.warning("⚠️ PH5.webp bulunamadı!")
+    st.image("PH5.webp", caption="🛏️ Bedroom", use_column_width=True)
 
-# PH6 ve PH7 yan yana
+# PH6 + PH7 yan yana
 col1, col2 = st.columns(2)
 with col1:
     if os.path.exists("PH6.webp"):
-        st.image("PH6.webp", caption="Photo 6", use_column_width=True)
-    else:
-        st.warning("⚠️ PH6.webp bulunamadı!")
-
+        st.image("PH6.webp", caption="🛁 Bathroom", use_column_width=True)
 with col2:
     if os.path.exists("PH7.webp"):
-        st.image("PH7.webp", caption="Photo 7", use_column_width=True)
-    else:
-        st.warning("⚠️ PH7.webp bulunamadı!")
+        st.image("PH7.webp", caption="🛏️ Bedrooms", use_column_width=True)
 
 # PH8 tek başına
 if os.path.exists("PH8.webp"):
-    st.image("PH8.webp", caption="Photo 8", use_column_width=True)
-else:
-    st.warning("⚠️ PH8.webp bulunamadı!")
+    st.image("PH8.webp", caption="🛁 Bathroom", use_column_width=True)
 
 # PH9 tek başına
 if os.path.exists("PH9.webp"):
-    st.image("PH9.webp", caption="Photo 9", use_column_width=True)
-else:
-    st.warning("⚠️ PH9.webp bulunamadı!")
+    st.image("PH9.webp", caption="🚗 Garage", use_column_width=True)
 
-# PH11 ve PH12 yan yana
+# PH11 + PH12 yan yana
 col1, col2 = st.columns(2)
 with col1:
     if os.path.exists("PH11.webp"):
-        st.image("PH11.webp", caption="Photo 11", use_column_width=True)
-    else:
-        st.warning("⚠️ PH11.webp bulunamadı!")
-
+        st.image("PH11.webp", caption="🏡 Exterior", use_column_width=True)
 with col2:
     if os.path.exists("PH12.webp"):
-        st.image("PH12.webp", caption="Photo 12", use_column_width=True)
-    else:
-        st.warning("⚠️ PH12.webp bulunamadı!")
+        st.image("PH12.webp", caption="📐 Floor Plan", use_column_width=True)
 
 # 💸 Kullanıcıdan Fiyat Tahmini Al
 st.subheader("💸 Enter Your Price Guess")
 user_price = st.number_input("Your guess (in USD):", min_value=0, step=1000)
 
-# 🎯 Gerçek Fiyat (Doğru: 214000)
+# 🎯 Gerçek Fiyat
 real_price = 214000
 
 if st.button("🎯 Make a Guess"):
@@ -129,3 +109,4 @@ if st.button("🎯 Make a Guess"):
             "https://media.tenor.com/UlD6LXPckBMAAAAC/very-high-gill-engvid.gif",
             caption="⏳ Hope you're patient..."
         )
+
