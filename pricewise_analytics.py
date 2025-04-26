@@ -1,13 +1,16 @@
-
 import streamlit as st
 import os
 
 # Sayfa Ayarları
-st.set_page_config(page_title="Guess the Price - Real Estate", layout="centered")
+st.set_page_config(page_title="Guess the Price - Real Estate Challenge", layout="centered")
 
-st.title("  Guess the Price 
-         Real Estate Challenge")
+# Logo gibi PH1 görseli
+st.image("PH1.webp", caption=None, use_column_width=False, width=300)
 
+# Başlık
+st.markdown("""
+# 👩‍🏠 Guess the Price - Real Estate Challenge
+""", unsafe_allow_html=True)
 
 # 🏡 House Features Bölümü
 st.header("🏡 House Features")
@@ -20,11 +23,8 @@ st.markdown("""
 - **Deck / Outdoor**: 26 m² deck + 9 m² patio  
 """)
 
-# 📸 Görseller Bölümü
-st.header("🏘️ Explore the Property")
-
-# PH1'den PH12'ye kadar olan fotoğrafları yükleme
-for i in range(1, 13):
+# PH2'den PH12'ye kadar olan fotoğrafları yükleme
+for i in range(2, 13):
     filename = f"PH{i}.webp"
     caption = f"Photo {i}"
 
@@ -59,7 +59,7 @@ if st.button("🎯 Submit Your Guess"):
         )
 
     else:
-        st.warning("📈 *Too high!* Your guess went through the roof! 🏢💸")
+        st.warning("📈 *Too high!* Your guess went through the roof! 🏒💸")
         st.image(
             "https://media.tenor.com/UlD6LXPckBMAAAAC/very-high-gill-engvid.gif",
             caption="⏳ Might need a reality check..."
