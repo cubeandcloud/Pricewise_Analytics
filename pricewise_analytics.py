@@ -4,14 +4,23 @@ import os
 # Sayfa Ayarları
 st.set_page_config(page_title="Guess the Price - Real Estate Challenge", layout="centered")
 
-# Logo gibi PH1 görseli
-st.image("PH1.webp", caption=None, use_column_width=False, width=10)
-
+# Çok küçük logo gibi PH1 görseli, tam ortalanmış
+st.markdown(
+    """
+    <div style="text-align: center;">
+        <img src="PH1.webp" alt="Logo" width="70">
+    </div>
+    """,
+    unsafe_allow_html=True
+)
 
 # Başlık
-st.markdown("""
-# 👩‍🏠 Guess the Price - Real Estate Challenge
-""", unsafe_allow_html=True)
+st.markdown(
+    """
+    <h1 style="text-align: center;">🏠 Guess the Price - Real Estate Challenge</h1>
+    """,
+    unsafe_allow_html=True
+)
 
 # 🏡 House Features Bölümü
 st.header("🏡 House Features")
@@ -39,9 +48,8 @@ st.subheader("💸 Enter Your Price Estimation")
 user_price = st.number_input("Your estimation (in USD):", min_value=0, step=1000)
 
 # 🎯 Gerçek Fiyat
-real_price = 289000  # İstediğin gibi değiştirebilirsin
+real_price = 289000
 
-# Tahmin Sonucu
 if st.button("🎯 Submit Your Guess"):
     diff = abs(user_price - real_price)
 
@@ -51,17 +59,16 @@ if st.button("🎯 Submit Your Guess"):
             "https://media.tenor.com/lW9bOeVpCs0AAAAC/that-is-the-best-answer-weve-had-simon-cowell.gif",
             caption="👏 Spot-on Guess!"
         )
-
     elif user_price < real_price:
         st.warning("📉 *A bit low!* You undervalued this property. It's worth more!")
         st.image(
             "https://media.tenor.com/YOtJ0DMyc6oAAAAC/office-the-insulting.gif",
             caption="😬 Oops, too low!"
         )
-
     else:
-        st.warning("📈 *Too high!* Your guess went through the roof! 🏒💸")
+        st.warning("📈 *Too high!* Your guess went through the roof! 🏢💸")
         st.image(
             "https://media.tenor.com/UlD6LXPckBMAAAAC/very-high-gill-engvid.gif",
             caption="⏳ Might need a reality check..."
         )
+
