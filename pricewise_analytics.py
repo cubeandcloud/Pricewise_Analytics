@@ -3,14 +3,11 @@ import streamlit as st
 import os
 
 # Sayfa Ayarları
-st.set_page_config(
-    page_title="Pricewise Analytics - Real Estate Insights",
-    page_icon="🏠",
-    layout="centered"
-)
+st.set_page_config(page_title="Guess the Price - Real Estate", layout="centered")
 
-# Başlık
-st.title("🏠 Pricewise Analytics - Real Estate Insights")
+st.title("  Guess the Price 
+         Real Estate Challenge")
+
 
 # 🏡 House Features Bölümü
 st.header("🏡 House Features")
