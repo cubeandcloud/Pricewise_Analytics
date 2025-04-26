@@ -22,26 +22,6 @@ st.markdown(
 )
 
 
-# Sayfa Ayarları
-st.set_page_config(page_title="Guess the Price - Real Estate Challenge", layout="centered")
-
-# Çok küçük logo gibi PH1 görseli, tam ortalanmış
-st.markdown(
-    """
-    <div style="text-align: center;">
-        <img src="PH1.webp" alt="Logo" width="70">
-    </div>
-    """,
-    unsafe_allow_html=True
-)
-
-# Başlık
-st.markdown(
-    """
-    <h1 style="text-align: center;">🏠 Guess the Price - Real Estate Challenge</h1>
-    """,
-    unsafe_allow_html=True
-)
 
 # 🏡 House Features Bölümü
 st.header("🏡 House Features")
