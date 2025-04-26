@@ -121,15 +121,5 @@ if os.path.exists("PH1.webp"):
     new_size = (width // 2, height // 2)  # 2'de 1 küçültme (daha büyük gösterim)
     img = img.resize(new_size)
 
-    # Ortalamak için HTML ile sarıyoruz
-    st.markdown(
-        """
-        <div style="text-align: center;">
-            <img src="PH1.webp" alt="Thank you" width="300">
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
-else:
-    st.warning("⚠️ PH1.webp not found at the end!")
+  
 
