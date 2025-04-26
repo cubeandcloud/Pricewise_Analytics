@@ -5,16 +5,25 @@ from PIL import Image
 # Sayfa Ayarları
 st.set_page_config(page_title="Guess the Price - Real Estate Challenge", layout="centered")
 
-# Üst Kısım: Yazı ve Logo yan yana
-st.markdown(
-    """
-    <div style="display: flex; align-items: center; justify-content: center;">
-        <h1 style="margin-right: 20px;">🏠 Guess the Price</h1>
-        <img src="PH1.webp" alt="Logo" width="80">
-    </div>
-    """,
-    unsafe_allow_html=True
-)
+# 📸 PH1 görselini yükle ve küçült
+if os.path.exists("PH1.webp"):
+    img = Image.open("PH1.webp")
+    width, height = img.size
+    new_size = (width // 4, height // 4)  # 4'te 1 küçültme
+    img = img.resize(new_size)
+
+    # İkisini yan yana koymak için iki kolon kullanıyoruz
+    col1, col2 = st.columns([4, 1])  # 4:1 oranında yer ayırdık
+
+    with col1:
+        st.markdown("<h1 style='text-align: right;'>🏠 Guess the Price</h1>", unsafe_allow_html=True)
+
+    with col2:
+        st.image(img)
+
+else:
+    st.warning("⚠️ PH1.webp bulunamadı!")
+
 
 # 🏡 House Features Bölümü
 st.header("🏡 House Features")
