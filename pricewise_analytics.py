@@ -5,7 +5,7 @@ import os
 st.set_page_config(page_title="Guess the Price - Real Estate Challenge", layout="centered")
 
 # Logo gibi PH1 görseli
-st.image("PH1.webp", caption=None, use_column_width=False, width=300)
+st.image("PH1.webp", caption=None, use_column_width=False, width=90)
 
 # Başlık
 st.markdown("""
