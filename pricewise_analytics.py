@@ -2,8 +2,10 @@ import streamlit as st
 import os
 from PIL import Image
 
-# Sayfa Ayarları
-st.set_page_config(page_title="Guess the Price - Real Estate Challenge", layout="centered")
+st.set_page_config(page_title="Guess the Price - Real Estate", layout="centered")
+
+st.title("🏠 Guess the Price - Real Estate Challenge")
+
 
 # PH1 logosunu yükle ve küçült
 if os.path.exists("PH1.webp"):
