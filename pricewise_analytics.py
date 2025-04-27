@@ -13,7 +13,7 @@ st.markdown(
 
 # 🏡 House Features ve PH1 yan yana
 st.header("🏡 House Features")
-col1, col2 = st.columns([3, 1])  # House features 3 birim, PH1 resmi 1 birim oranlı
+col1, col2 = st.columns([2, 1])  # House features 3 birim, PH1 resmi 1 birim oranlı
 
 with col1:
     st.markdown("""
@@ -121,15 +121,7 @@ if os.path.exists("PH1.webp"):
     new_size = (width // 2, height // 2)  # 2'de 1 küçültme (daha büyük gösterim)
     img = img.resize(new_size)
 
-    # Ortalamak için HTML kullan
-    st.markdown(
-        """
-        <div style="text-align: center;">
-            <img src="PH1.webp" alt="Thank you" width="300">
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
+    
     st.markdown(
         """
         <h4 style="text-align: center; color: grey;">🏠 Thank you for visiting!</h4>
