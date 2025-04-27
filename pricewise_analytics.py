@@ -88,16 +88,21 @@ with col2:
     if os.path.exists("PH12.webp"):
         st.image("PH12.webp", caption="📐 Floor Plan", use_container_width=True)
 
-# 💸 Kullanıcıdan Fiyat Tahmini Al
-st.subheader("💸 Enter Your Price Guess")
-user_price = st.number_input("Your guess (in USD):", min_value=0, step=1000)
-
-# 🎯 Gerçek Fiyat
-real_price = 214000
+# Kullanıcıdan isim alalım
+st.subheader("🧑 Enter Your Name (Optional)")
+user_name = st.text_input("Your name:")
 
 if st.button("🎯 Make a Guess"):
     diff = abs(user_price - real_price)
 
+    # Tahmini ve kullanıcı adını kaydet
+    st.session_state.guesses.append({
+        "name": user_name.strip(),  # Boşsa boş kalsın
+        "guess": user_price,
+        "diff": diff
+    })
+
+    # Tahmin sonucuna göre GIF ve mesaj
     if diff <= 5000:
         st.success("🎯 *So Close!* You're almost a real estate genius! 🧠💰")
         st.image("https://media4.giphy.com/media/KHKnSqATU08oS73LWi/giphy.gif", caption="🎯 Almost a perfect shot!")
@@ -109,8 +114,6 @@ if st.button("🎯 Make a Guess"):
     else:
         st.warning("📈 *Too High!* Whoa, that's a skyscraper price! 🏢\nAt this price, the house might still be on sale when you retire 😅")
         st.image("https://media2.giphy.com/media/l0G1700P94aQRbMpW/giphy.gif", caption="📈 Way above the clouds!")
-
-
 
 
 
