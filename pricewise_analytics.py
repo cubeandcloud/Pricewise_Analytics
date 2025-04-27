@@ -3,8 +3,8 @@ import os
 from PIL import Image
 
 # Sayfa ayarları
-st.set_page_config(page_title="Guess the Price - Real Estate Challenge", layout="centered")
-
+st.set_page_config(page_title="Guess the Price ", layout="centered")
+st.set_page_config(page_title="Real Estate Challenge", layout="centered")
 # En üste sadece başlık
 st.markdown(
     "<h1 style='text-align: center;'>🏠 Guess the Price - Real Estate Challenge</h1>",
