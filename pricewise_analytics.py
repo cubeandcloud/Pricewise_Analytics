@@ -2,38 +2,38 @@ import streamlit as st
 import os
 from PIL import Image
 
-st.set_page_config(page_title="Guess the Price - Real Estate", layout="centered")
+# Sayfa ayarları
+st.set_page_config(page_title="Guess the Price - Real Estate Challenge", layout="centered")
 
-st.title("🏠 Guess the Price - Real Estate Challenge")
+# En üste sadece başlık
+st.markdown(
+    "<h1 style='text-align: center;'>🏠 Guess the Price - Real Estate Challenge</h1>",
+    unsafe_allow_html=True
+)
 
-
-# PH1 logosunu yükle ve küçült
-if os.path.exists("PH1.webp"):
-    img = Image.open("PH1.webp")
-    width, height = img.size
-    new_size = (width // 4, height // 4)
-    img = img.resize(new_size)
-
-    col1, col2 = st.columns([4, 1])
-
-    with col1:
-        st.markdown("<h1 style='text-align: right;'>🏠 Guess the Price</h1>", unsafe_allow_html=True)
-
-    with col2:
-        st.image(img)
-else:
-    st.warning("⚠️ PH1.webp not found!")
-
-# 🏡 House Features Bölümü
+# 🏡 House Features ve PH1 yan yana
 st.header("🏡 House Features")
-st.markdown("""
-- **Room Count**: 3 bedrooms, 2 bathrooms  
-- **Living Area**: 137 m²  
-- **Year Built**: 2003 (Renovated in 2009)  
-- **Neighborhood**: Northridge Heights, Ames, Iowa  
-- **Garage**: 2-car garage (57 m²)  
-- **Deck / Outdoor**: 24 m² deck + 7 m² patio  
-""")
+col1, col2 = st.columns([3, 1])  # House features 3 birim, PH1 resmi 1 birim oranlı
+
+with col1:
+    st.markdown("""
+    - **Room Count**: 3 bedrooms, 2 bathrooms  
+    - **Living Area**: 137 m²  
+    - **Year Built**: 2003 (Renovated in 2009)  
+    - **Neighborhood**: Northridge Heights, Ames, Iowa  
+    - **Garage**: 2-car garage (57 m²)  
+    - **Deck / Outdoor**: 24 m² deck + 7 m² patio  
+    """)
+
+with col2:
+    if os.path.exists("PH1.webp"):
+        img = Image.open("PH1.webp")
+        width, height = img.size
+        new_size = (width // 4, height // 4)  # House Features'a uyacak şekilde küçültme
+        img = img.resize(new_size)
+        st.image(img)
+    else:
+        st.warning("⚠️ PH1.webp not found!")
 
 # 📸 Fotoğrafları sırayla ve doğru açıklamalarla göster
 # PH2 + PH3 yan yana
@@ -112,8 +112,6 @@ if st.button("🎯 Make a Guess"):
             caption="⏳ Hope you're patient..."
         )
 
-
-
 # 📸 En alta tekrar PH1 resmi getir (kapanış görseli gibi)
 st.markdown("---")  # bir çizgi ayırıcı
 
@@ -123,5 +121,20 @@ if os.path.exists("PH1.webp"):
     new_size = (width // 2, height // 2)  # 2'de 1 küçültme (daha büyük gösterim)
     img = img.resize(new_size)
 
-  
-
+    # Ortalamak için HTML kullan
+    st.markdown(
+        """
+        <div style="text-align: center;">
+            <img src="PH1.webp" alt="Thank you" width="300">
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+    st.markdown(
+        """
+        <h4 style="text-align: center; color: grey;">🏠 Thank you for visiting!</h4>
+        """,
+        unsafe_allow_html=True
+    )
+else:
+    st.warning("⚠️ PH1.webp not found at the end!")
