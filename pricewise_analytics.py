@@ -5,12 +5,14 @@ from PIL import Image
 st.markdown(
     """
     <div style='text-align: center;'>
-        <h1 style='margin-bottom: 0;'>Guess the Price</h1>
-        <h2 style='margin-top: 0; color: grey;'>Real Estate Challenge</h2>
+        <div style='font-size: 50px;'>🏠</div>
+        <h1 style='margin: 0;'>Guess the Price</h1>
+        <h2 style='margin: 0; color: grey;'>Real Estate Challenge</h2>
     </div>
     """,
     unsafe_allow_html=True
 )
+
 
 
 
