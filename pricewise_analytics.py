@@ -5,7 +5,7 @@ from PIL import Image
 # Sayfa ayarları
 st.set_page_config(page_title="Guess the Price - Real Estate Challenge", layout="centered")
 
-# Başlık (2 satırlı, renkli)
+# --- Başlık ---
 st.markdown(
     """
     <div style='text-align: center;'>
@@ -16,9 +16,13 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# 🏡 House Features ve PH1 yan yana
+# 🧠 Session State: Tahmin geçmişi tutmak için
+if "guesses" not in st.session_state:
+    st.session_state.guesses = []
+
+# --- House Features ---
 st.header("🏡 House Features")
-col1, col2 = st.columns([2, 1])  # 2:1 oranında genişlik
+col1, col2 = st.columns([2, 1])
 
 with col1:
     st.markdown("""
@@ -33,15 +37,12 @@ with col1:
 with col2:
     if os.path.exists("PH1.webp"):
         img = Image.open("PH1.webp")
-        width, height = img.size
-        new_size = (width // 4, height // 4)
-        img = img.resize(new_size)
+        img = img.resize((img.width // 4, img.height // 4))
         st.image(img)
     else:
         st.warning("⚠️ PH1.webp not found!")
 
-# 📸 Fotoğrafları doğru açıklamalarla göster
-# PH2 + PH3 yan yana
+# --- Fotoğraflar ---
 col1, col2 = st.columns(2)
 with col1:
     if os.path.exists("PH2.webp"):
@@ -50,19 +51,13 @@ with col2:
     if os.path.exists("PH3.webp"):
         st.image("PH3.webp", caption="🏘️ Neighborhood", use_container_width=True)
 
-# PH4 tek başına
 if os.path.exists("PH4.webp"):
     st.image("PH4.webp", caption="🛋️ Living Room", use_container_width=True)
-
-# PH10 tek başına
 if os.path.exists("PH10.webp"):
     st.image("PH10.webp", caption="🍽️ Kitchen", use_container_width=True)
-
-# PH5 tek başına
 if os.path.exists("PH5.webp"):
     st.image("PH5.webp", caption="🛏️ Bedroom", use_container_width=True)
 
-# PH6 + PH7 yan yana
 col1, col2 = st.columns(2)
 with col1:
     if os.path.exists("PH6.webp"):
@@ -71,15 +66,11 @@ with col2:
     if os.path.exists("PH7.webp"):
         st.image("PH7.webp", caption="🛏️ Bedrooms", use_container_width=True)
 
-# PH8 tek başına
 if os.path.exists("PH8.webp"):
     st.image("PH8.webp", caption="🛁 Bathroom", use_container_width=True)
-
-# PH9 tek başına
 if os.path.exists("PH9.webp"):
     st.image("PH9.webp", caption="🚗 Garage", use_container_width=True)
 
-# PH11 + PH12 yan yana
 col1, col2 = st.columns(2)
 with col1:
     if os.path.exists("PH11.webp"):
@@ -88,51 +79,71 @@ with col2:
     if os.path.exists("PH12.webp"):
         st.image("PH12.webp", caption="📐 Floor Plan", use_container_width=True)
 
-# Kullanıcıdan isim alalım
+# --- Kullanıcı Girişleri ---
 st.subheader("🧑 Enter Your Name (Optional)")
 user_name = st.text_input("Your name:")
 
+st.subheader("💸 Enter Your Price Guess")
+user_price = st.number_input("Your guess (in USD):", min_value=0, step=1000)
+
+# 🎯 Gerçek Fiyat
+real_price = 214000
+
+# --- Tahmin Butonu ---
 if st.button("🎯 Make a Guess"):
-    diff = abs(user_price - real_price)
 
-    # Tahmini ve kullanıcı adını kaydet
-    st.session_state.guesses.append({
-        "name": user_name.strip(),  # Boşsa boş kalsın
-        "guess": user_price,
-        "diff": diff
-    })
-
-    # Tahmin sonucuna göre GIF ve mesaj
-    if diff <= 5000:
-        st.success("🎯 *So Close!* You're almost a real estate genius! 🧠💰")
-        st.image("https://media4.giphy.com/media/KHKnSqATU08oS73LWi/giphy.gif", caption="🎯 Almost a perfect shot!")
-
-    elif user_price < real_price:
-        st.warning("📉 *Too Low!* You just undersold a hidden gem!\nAim higher next time 💎")
-        st.image("https://media1.giphy.com/media/26uf14WIlvzuZkKLS/giphy.gif", caption="📉 That was a steal... for someone else!")
-
+    if user_price == 0:
+        st.warning("⚠️ Please enter a valid price guess!")
     else:
-        st.warning("📈 *Too High!* Whoa, that's a skyscraper price! 🏢\nAt this price, the house might still be on sale when you retire 😅")
-        st.image("https://media2.giphy.com/media/l0G1700P94aQRbMpW/giphy.gif", caption="📈 Way above the clouds!")
+        diff = abs(user_price - real_price)
 
+        # Tahmini kaydet
+        st.session_state.guesses.append({
+            "name": user_name.strip(),
+            "guess": user_price,
+            "diff": diff
+        })
 
+        # 🎯 Sonuçlar ve GIF'ler
+        if diff <= 5000:
+            st.success("🎯 *So Close!* You're almost a real estate genius! 🧠💰")
+            st.image("https://media4.giphy.com/media/KHKnSqATU08oS73LWi/giphy.gif", caption="🎯 Almost a perfect shot!")
+        
+        elif user_price < real_price:
+            st.warning("📉 *Too Low!* You just undersold a hidden gem!\nAim higher next time 💎")
+            st.image("https://media1.giphy.com/media/26uf14WIlvzuZkKLS/giphy.gif", caption="📉 That was a steal... for someone else!")
 
-# 📸 En alta kapanış için tekrar PH1 resmi ve teşekkür mesajı
-st.markdown("---")  # Ayırıcı çizgi
+        else:
+            st.warning("📈 *Too High!* Whoa, that's a skyscraper price! 🏢\nAt this price, the house might still be on sale when you retire 😅")
+            st.image("https://media2.giphy.com/media/l0G1700P94aQRbMpW/giphy.gif", caption="📈 Way above the clouds!")
+
+# --- Best 5 Tahminler ---
+if st.session_state.guesses:
+    st.markdown("---")
+    st.subheader("🏆 Best 5 Guesses (Named Only)")
+
+    named_guesses = [g for g in st.session_state.guesses if g['name']]
+    
+    if named_guesses:
+        best_guesses = sorted(named_guesses, key=lambda x: x["diff"])[:5]
+
+        for idx, entry in enumerate(best_guesses, start=1):
+            emoji = "🥇" if idx == 1 else "⭐"
+            st.write(f"{emoji} **{idx}. {entry['name']}** guessed **${int(entry['guess'])}** | **Difference:** ${int(entry['diff'])}")
+    else:
+        st.info("ℹ️ No named guesses yet!")
+
+# --- Teşekkür ve Kapanış ---
+st.markdown("---")
 
 if os.path.exists("PH1.webp"):
     img = Image.open("PH1.webp")
-    width, height = img.size
-    new_size = (width // 2, height // 2)
-    img = img.resize(new_size)
-
+    img = img.resize((img.width // 2, img.height // 2))
     st.image(img, use_container_width=False)
 
-    st.markdown(
-        """
-        <h4 style="text-align: center; color: grey;">🏠 Thank you for visiting!</h4>
-        """,
-        unsafe_allow_html=True
-    )
-else:
-    st.warning("⚠️ PH1.webp not found at the end!")
+st.markdown(
+    """
+    <h4 style="text-align: center; color: grey;">🏠 Thank you for visiting!</h4>
+    """,
+    unsafe_allow_html=True
+)
