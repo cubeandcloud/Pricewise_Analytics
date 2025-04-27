@@ -99,23 +99,20 @@ if st.button("🎯 Make a Guess"):
     diff = abs(user_price - real_price)
 
     if diff <= 5000:
-        st.success("🏆 *Incredible!* You guessed almost spot on!\nYou must have a sixth sense for real estate deals 🧠💰")
-        st.image(
-            "https://media.tenor.com/lW9bOeVpCs0AAAAC/that-is-the-best-answer-weve-had-simon-cowell.gif",
-            caption="👏 Perfect answer!"
-        )
+        st.success("🎯 Bullseye! You nailed it!")
+        st.image("https://media.giphy.com/media/3o6Zt481isNVuQI1l6/giphy.gif", caption="Perfect guess!")
+        
     elif user_price < real_price:
-        st.warning("📉 *Too Low!* You just undersold a gem!\nThis house is more valuable than that 💎")
-        st.image(
-            "https://media.tenor.com/YOtJ0DMyc6oAAAAC/office-the-insulting.gif",
-            caption="😬 That was a bit insulting..."
-        )
+        st.warning("📉 Too low! This house is worth more than that.")
+        st.image("https://media.giphy.com/media/3o6Zt6ML6BklcajjsA/giphy.gif", caption="Aim higher next time!")
+
     else:
-        st.warning("📈 *Too High!* Whoa! That’s a sky-high guess! 💸\nAt that price, the house might still be on sale when you’re retired 😅")
-        st.image(
-            "https://media.tenor.com/UlD6LXPckBMAAAAC/very-high-gill-engvid.gif",
-            caption="⏳ Hope you're patient..."
-        )
+        st.warning("📈 Too high! At that price, the house might still be on sale when you retire.")
+        st.image("https://media.giphy.com/media/3o6Zt8MgUuvSbkZYWc/giphy.gif", caption="A bit over the top!")
+
+
+
+
 
 # 📸 En alta kapanış için tekrar PH1 resmi ve teşekkür mesajı
 st.markdown("---")  # Ayırıcı çizgi
