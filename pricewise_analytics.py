@@ -5,12 +5,13 @@ from PIL import Image
 st.markdown(
     """
     <div style='text-align: center;'>
-        <h1 style='margin-bottom: 0;'>🏠 Guess the Price</h1>
-        <h3 style='margin-top: 5px; color: grey;'>Real Estate Challenge</h3>
+        <h1 style='margin-bottom: 0;'>Guess the Price</h1>
+        <h2 style='margin-top: 0; color: grey;'>Real Estate Challenge</h2>
     </div>
     """,
     unsafe_allow_html=True
 )
+
 
 
 # 🏡 House Features ve PH1 yan yana
