@@ -2,9 +2,16 @@ import streamlit as st
 import os
 from PIL import Image
 
-# Sayfa ayarları
-st.set_page_config(page_title="Guess the Price ", layout="centered")
-st.set_page_config(page_title="Real Estate Challenge", layout="centered")
+# En üste iki satırlı başlık
+st.markdown(
+    """
+    <h1 style='text-align: center;'>🏠 Guess the Price</h1>
+    <h2 style='text-align: center;'>Real Estate Challenge</h2>
+    """,
+    unsafe_allow_html=True
+)
+
+
 # En üste sadece başlık
 st.markdown(
     "<h1 style='text-align: center;'>🏠 Guess the Price - Real Estate Challenge</h1>",
