@@ -2,21 +2,16 @@ import streamlit as st
 import os
 from PIL import Image
 
-# En üste iki satırlı başlık
 st.markdown(
     """
-    <h1 style='text-align: center;'>🏠 Guess the Price</h1>
-    <h2 style='text-align: center;'>Real Estate Challenge</h2>
+    <div style='text-align: center;'>
+        <h1 style='margin-bottom: 0;'>🏠 Guess the Price</h1>
+        <h3 style='margin-top: 5px; color: grey;'>Real Estate Challenge</h3>
+    </div>
     """,
     unsafe_allow_html=True
 )
 
-
-# En üste sadece başlık
-st.markdown(
-    "<h1 style='text-align: center;'>🏠 Guess the Price - Real Estate Challenge</h1>",
-    unsafe_allow_html=True
-)
 
 # 🏡 House Features ve PH1 yan yana
 st.header("🏡 House Features")
