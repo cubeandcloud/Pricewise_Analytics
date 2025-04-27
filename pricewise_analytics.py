@@ -5,9 +5,8 @@ from PIL import Image
 st.markdown(
     """
     <div style='text-align: center;'>
-        <div style='font-size: 50px;'>🏠</div>
-        <h1 style='margin: 0;'>Guess the Price</h1>
-        <h2 style='margin: 0; color: grey;'>Real Estate Challenge</h2>
+        <h1 style='margin-bottom: 0; color: black;'>🏠 Guess the Price</h1>
+        <h3 style='margin-top: 5px; color: green;'>Real Estate Challenge</h3>
     </div>
     """,
     unsafe_allow_html=True
