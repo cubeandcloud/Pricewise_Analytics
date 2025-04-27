@@ -99,16 +99,17 @@ if st.button("🎯 Make a Guess"):
     diff = abs(user_price - real_price)
 
     if diff <= 5000:
-        st.success("🎯 *Bullseye!* You nailed it!\nYou must have a sixth sense for real estate deals 🧠💰")
-        st.image("https://media.giphy.com/media/l2JhKi9rEy1ZmRXDi/giphy.gif", caption="🎯 Perfect Shot!")
+        st.success("🎯 *So Close!* You're almost a real estate genius! 🧠💰")
+        st.image("https://media4.giphy.com/media/KHKnSqATU08oS73LWi/giphy.gif", caption="🎯 Almost a perfect shot!")
 
     elif user_price < real_price:
         st.warning("📉 *Too Low!* You just undersold a hidden gem!\nAim higher next time 💎")
         st.image("https://media1.giphy.com/media/26uf14WIlvzuZkKLS/giphy.gif", caption="📉 That was a steal... for someone else!")
 
     else:
-        st.warning("📈 *Too High!* Whoa, that's a skyscraper price! 🏢\nAt this price, the house might still be waiting when you retire 😅")
-        st.image("https://media.giphy.com/media/26xBMuKzGbpmj68Ba/giphy.gif", caption="📈 Sky is NOT the limit!")
+        st.warning("📈 *Too High!* Whoa, that's a skyscraper price! 🏢\nAt this price, the house might still be on sale when you retire 😅")
+        st.image("https://media2.giphy.com/media/l0G1700P94aQRbMpW/giphy.gif", caption="📈 Way above the clouds!")
+
 
 
 
