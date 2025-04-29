@@ -121,35 +121,33 @@ if page == "🏠 Play Game":
             df.to_csv("guesses.csv", index=False)
 
             # 🎯 Sonuç ve GIF
-# 🎯 Sonuç ve GIF
-if diff == 0:
-    st.balloons()
-    st.success("🏆 Perfect Guess! You are a true real estate master! 🏡✨")
-    st.image("https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExaGlibXBtNXpzeHBpMGZnd28xcDI0Y291Ym5rbTV1OGZ5eGdndGNwOSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3WCNY2RhcmnwGbKbCi/giphy.gif", caption="🏆 Perfect Guess!")
-elif diff <= 5000:
-    st.success("🎯 *So Close!* You're almost a real estate genius! 🧠💰")
-    st.image("https://media4.giphy.com/media/KHKnSqATU08oS73LWi/giphy.gif", caption="🎯 Almost a perfect shot!")
-elif user_price < real_price:
-    st.warning("📉 *Too Low!* You just undersold a hidden gem!\nAim higher next time 💎")
-    st.image("https://media1.giphy.com/media/26uf14WIlvzuZkKLS/giphy.gif", caption="📉 That was a steal... for someone else!")
-else:
-    st.warning("📈 *Too High!* Whoa, that's a skyscraper price! 🏢\nAt this price, the house might still be on sale when you retire 😅")
-    st.image("https://media2.giphy.com/media/l0G1700P94aQRbMpW/giphy.gif", caption="📈 Way above the clouds!")
+            if diff == 0:
+                st.balloons()
+                st.success("🏆 Perfect Guess! You are a true real estate master! 🏡✨")
+                st.image("https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExaGlibXBtNXpzeHBpMGZnd28xcDI0Y291Ym5rbTV1OGZ5eGdndGNwOSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3WCNY2RhcmnwGbKbCi/giphy.gif", caption="🏆 Perfect Guess!")
+            elif diff <= 5000:
+                st.success("🎯 *So Close!* You're almost a real estate genius! 🧠💰")
+                st.image("https://media4.giphy.com/media/KHKnSqATU08oS73LWi/giphy.gif", caption="🎯 Almost a perfect shot!")
+            elif user_price < real_price:
+                st.warning("📉 *Too Low!* You just undersold a hidden gem!\nAim higher next time 💎")
+                st.image("https://media1.giphy.com/media/26uf14WIlvzuZkKLS/giphy.gif", caption="📉 That was a steal... for someone else!")
+            else:
+                st.warning("📈 *Too High!* Whoa, that's a skyscraper price! 🏢\nAt this price, the house might still be on sale when you retire 😅")
+                st.image("https://media2.giphy.com/media/l0G1700P94aQRbMpW/giphy.gif", caption="📈 Way above the clouds!")
 
+            # --- Teşekkür ve Kapanış ---
+            st.markdown("---")
+            if os.path.exists("PH1.webp"):
+                img = Image.open("PH1.webp")
+                img = img.resize((img.width // 2, img.height // 2))
+                st.image(img, use_container_width=False)
 
-    # --- Teşekkür ve Kapanış ---
-    st.markdown("---")
-    if os.path.exists("PH1.webp"):
-        img = Image.open("PH1.webp")
-        img = img.resize((img.width // 2, img.height // 2))
-        st.image(img, use_container_width=False)
-
-    st.markdown(
-        """
-        <h4 style="text-align: center; color: grey;">🏠 Thank you for visiting!</h4>
-        """,
-        unsafe_allow_html=True
-    )
+            st.markdown(
+                """
+                <h4 style="text-align: center; color: grey;">🏠 Thank you for visiting!</h4>
+                """,
+                unsafe_allow_html=True
+            )
 
 # --- 📊 Admin Panel Sayfası ---
 elif page == "📊 Admin Panel":
@@ -157,7 +155,7 @@ elif page == "📊 Admin Panel":
 
     password = st.text_input("🔒 Enter Admin Password:", type="password")
 
-    if password == "data123":  # Admin şifresi
+    if password == "data123":
         st.success("🔓 Access Granted!")
 
         if os.path.exists("guesses.csv"):
@@ -165,15 +163,13 @@ elif page == "📊 Admin Panel":
             named_guesses = df[df['name'] != ""]
 
             if not named_guesses.empty:
-                # 1. Kişi bazında en iyi tahmini seç
                 best_by_name = (
                     named_guesses
                     .sort_values(by="diff")
                     .drop_duplicates(subset="name", keep="first")
-                    .sort_values(by="diff")  # tekrar sıralıyoruz ki diff'e göre doğru sıralansın
+                    .sort_values(by="diff")
                 )
 
-                # 2. İlk 5 farklı kişi seç
                 best_guesses = best_by_name.head(5)
 
                 st.subheader("🏆 Best 5 Unique Players")
@@ -188,7 +184,6 @@ elif page == "📊 Admin Panel":
                         medal = "⭐"
                     st.write(f"{medal} **{row['name']}** guessed **${int(row['guess'])}** | **Difference:** ${int(row['diff'])}")
 
-                # 📥 CSV İndirme
                 st.download_button(
                     label="📥 Download All Guesses as CSV",
                     data=df.to_csv(index=False).encode('utf-8'),
@@ -200,7 +195,6 @@ elif page == "📊 Admin Panel":
         else:
             st.info("ℹ️ No guesses made yet!")
 
-        # ♻️ Reset Butonu
         if st.button("♻️ Clear All Guesses"):
             if os.path.exists("guesses.csv"):
                 os.remove("guesses.csv")
@@ -209,5 +203,3 @@ elif page == "📊 Admin Panel":
 
     elif password != "":
         st.error("🚫 Wrong Password!")
-
-
