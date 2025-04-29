@@ -59,8 +59,8 @@ if page == "🏠 Play Game":
         if os.path.exists("PH2.webp"):
             st.image("PH2.webp", caption="📍 Location", use_container_width=True)
     with col2:
-        if os.path.exists("PH3.webp"):
-            st.image("PH3.webp", caption="🏨 Neighborhood", use_container_width=True)
+        if os.path.exists("PH30.webp"):
+            st.image("PH30.webp", caption="🏨 Neighborhood", use_container_width=True)
 
     if os.path.exists("PH4.webp"):
         st.image("PH4.webp", caption="🏡 Living Room", use_container_width=True)
