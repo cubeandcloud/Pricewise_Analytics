@@ -121,15 +121,21 @@ if page == "🏠 Play Game":
             df.to_csv("guesses.csv", index=False)
 
             # 🎯 Sonuç ve GIF
-            if diff <= 5000:
-                st.success("🎯 *So Close!* You're almost a real estate genius! 🧠💰")
-                st.image("https://media4.giphy.com/media/KHKnSqATU08oS73LWi/giphy.gif", caption="🎯 Almost a perfect shot!")
-            elif user_price < real_price:
-                st.warning("📉 *Too Low!* You just undersold a hidden gem!\nAim higher next time 💎")
-                st.image("https://media1.giphy.com/media/26uf14WIlvzuZkKLS/giphy.gif", caption="📉 That was a steal... for someone else!")
-            else:
-                st.warning("📈 *Too High!* Whoa, that's a skyscraper price! 🏢\nAt this price, the house might still be on sale when you retire 😅")
-                st.image("https://media2.giphy.com/media/l0G1700P94aQRbMpW/giphy.gif", caption="📈 Way above the clouds!")
+# 🎯 Sonuç ve GIF
+if diff == 0:
+    st.balloons()
+    st.success("🏆 Perfect Guess! You are a true real estate master! 🏡✨")
+    st.image("https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExaGlibXBtNXpzeHBpMGZnd28xcDI0Y291Ym5rbTV1OGZ5eGdndGNwOSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3WCNY2RhcmnwGbKbCi/giphy.gif", caption="🏆 Perfect Guess!")
+elif diff <= 5000:
+    st.success("🎯 *So Close!* You're almost a real estate genius! 🧠💰")
+    st.image("https://media4.giphy.com/media/KHKnSqATU08oS73LWi/giphy.gif", caption="🎯 Almost a perfect shot!")
+elif user_price < real_price:
+    st.warning("📉 *Too Low!* You just undersold a hidden gem!\nAim higher next time 💎")
+    st.image("https://media1.giphy.com/media/26uf14WIlvzuZkKLS/giphy.gif", caption="📉 That was a steal... for someone else!")
+else:
+    st.warning("📈 *Too High!* Whoa, that's a skyscraper price! 🏢\nAt this price, the house might still be on sale when you retire 😅")
+    st.image("https://media2.giphy.com/media/l0G1700P94aQRbMpW/giphy.gif", caption="📈 Way above the clouds!")
+
 
     # --- Teşekkür ve Kapanış ---
     st.markdown("---")
