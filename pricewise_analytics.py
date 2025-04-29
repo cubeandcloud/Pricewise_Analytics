@@ -97,6 +97,18 @@ if page == "🏠 Play Game":
     st.subheader("💸 Enter Your Price Guess")
     user_price = st.number_input("Your guess (in USD):", min_value=0, step=1000)
 
+    with st.expander("💡 Hint: College Creek Area Overview"):
+    st.markdown(
+        """
+        🏡 **About the College Creek Area:**
+
+        - Prices range from 110,000 to 475,000.
+        - The average home price is around 201,800.
+
+        ✨ *Additionally, this property has been renovated, which likely boosted its value by approximately 18%.*
+        """
+    )
+
     if st.button("🎯 Make a Guess"):
         if user_price == 0:
             st.warning("⚠️ Please enter a valid price guess!")
