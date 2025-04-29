@@ -7,7 +7,7 @@ from PIL import Image
 st.set_page_config(page_title="Guess the Price - Real Estate Challenge", layout="centered")
 
 # --- 🎯 Gerçek Fiyat ---
-real_price = 214000
+real_price = 266000
 
 # --- 🧠 Session State: Sadece geçici tutuyoruz ---
 if "guesses" not in st.session_state:
@@ -40,7 +40,7 @@ if page == "🏠 Play Game":
         - **Room Count**: 3 bedrooms, 2 bathrooms  
         - **Living Area**: 137 m²  
         - **Year Built**: 2003 (Renovated in 2009)  
-        - **Neighborhood**: Northridge Heights, Ames, Iowa  
+        - **Neighborhood**: College Creeks, Ames, Iowa  
         - **Garage**: 2-car garage (57 m²)  
         - **Deck / Outdoor**: 24 m² deck + 7 m² patio  
         """)
