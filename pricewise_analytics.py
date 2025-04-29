@@ -151,7 +151,7 @@ elif page == "📊 Admin Panel":
 
     password = st.text_input("🔒 Enter Admin Password:", type="password")
 
-    if password == "data123":  # Şifren burası (değiştirebilirsin)
+    if password == "data123":  # Şifreyi burada belirliyorsun
         st.success("🔓 Access Granted!")
 
         if os.path.exists("guesses.csv"):
@@ -159,14 +159,22 @@ elif page == "📊 Admin Panel":
             named_guesses = df[df['name'] != ""]
 
             if not named_guesses.empty:
-                best_guesses = named_guesses.sort_values(by="diff").head(5)
+                # 📌 Aynı kişinin sadece en iyi tahmini kalsın
+                best_unique_guesses = (
+                    named_guesses
+                    .sort_values(by="diff")   # En küçük farkları en üste getir
+                    .drop_duplicates(subset="name", keep="first")  # Aynı isimden sadece en iyisini al
+                )
+
+                # 📌 Sonra ilk 5 farklı kişiyi seçelim
+                best_guesses = best_unique_guesses.head(5)
 
                 st.subheader("🏆 Best 5 Guesses (Named Only)")
                 for idx, row in best_guesses.iterrows():
-                    emoji = "🥇" if idx == best_guesses.index[0] else "⭐"
-                    st.write(f"{emoji} **{row['name']}** guessed **${int(row['guess'])}** | **Difference:** ${int(row['diff'])}")
+                    medal = "🥇" if idx == best_guesses.index[0] else "⭐"
+                    st.write(f"{medal} **{row['name']}** guessed **${int(row['guess'])}** | **Difference:** ${int(row['diff'])}")
 
-                # 🧾 Tahminleri CSV Olarak İndir
+                # 📥 Tahminleri CSV olarak indirme
                 st.download_button(
                     label="📥 Download All Guesses as CSV",
                     data=df.to_csv(index=False).encode('utf-8'),
@@ -178,7 +186,7 @@ elif page == "📊 Admin Panel":
         else:
             st.info("ℹ️ No guesses made yet!")
 
-        # --- Reset Guesses Butonu ---
+        # ♻️ Reset Butonu (Tüm tahminleri temizler)
         if st.button("♻️ Clear All Guesses"):
             if os.path.exists("guesses.csv"):
                 os.remove("guesses.csv")
@@ -187,3 +195,4 @@ elif page == "📊 Admin Panel":
 
     elif password != "":
         st.error("🚫 Wrong Password!")
+
